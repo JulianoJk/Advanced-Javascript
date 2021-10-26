@@ -5,3 +5,8 @@
     top: 10px;
     background-color: rgb(228, 224, 228);
 }
+
+button{
+    border-color: rgb(41, 38, 41);
+    padding: 10px;
+}

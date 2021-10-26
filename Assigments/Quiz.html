@@ -7,15 +7,17 @@
     <link rel = "stylesheet" href="Quiz.css">
     <title>Document</title>
 </head>
-<body>
-    <div><button id="process-btn" onclick="process()" value="starting">Start</button></div>
+<body onload="loaded()">
 
-    <div><button id="next-question-button" onclick="getQuestion() ">Next Question</button></div>
+    <!--A button to start the quiz, then to get next question-->
+    <div id="process-div"><button id="process-button">Start</button></div>
 
+   <!--Display the question--> 
+   <div id="questions"></div>
+
+    <!--Change the background mode-->
     <div><button id="night-day-button" onclick="changeMode()">Night mode</button></div>
 
-    <div id="questions"></div>
-    
     
     <script src="./Quiz.js"></script>
 </body>
