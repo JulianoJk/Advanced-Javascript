@@ -1,3 +1,6 @@
+let questions_array =[]; //Empty array to store the questions(question+ options)
+let currentQuestion = 0; //Set the question number
+
 //Once the page loads, assign this function to the start button
 function loaded(){
     let starts_button = document.getElementById("process-button");
@@ -43,38 +46,44 @@ function startQuiz(){
 function getQuestion(){
     fetch("https://opentdb.com/api.php?amount=4&difficulty=easy&type=multiple")
     .then(res=> data=res.json())
-    .then(data => displayQuestion(data))//whatever we declare the name of the arg, it will get the data from the previous .then()
-    //Call the next function and pass the data arg to the function 
+    .then(data => {
+        questions_array = data['results']; //Assign everything the 'results' obj
+        displayQuestion()
+    }); 
 }
 
-function displayQuestion(data){
-    //from the API response, from the api data, from the results key at position 0 get the question and save it to a variable
-    let result = data['results'][0]
-    // Assign the results from and make it bold.Later add it ti the html body
+function displayQuestion(){
+    let display_question ="<div><b>" + questions_array[currentQuestion]['question'] + "</b></div>"; 
+
+
+
     //In order to shuffle the correct answer instead of being always the first or last
     let randomPos = Math.floor(Math.random() * 4);
-    let html = '<div><b>' + result['question'] + '</b></div>';
-    console.log(result['correct_answer']) //TODO: Remove the log here
+    let correct = questions_array[currentQuestion]['correct_answer']; //save the correct answer of the quiz
+    let incorrect = questions_array[currentQuestion]['incorrect_answers']; //save the correct answer of the quiz
+
     /*Loop to shuffle the answers. If the i is matched with the randomPos, add the correct answer to that position, else add all the wrong answers. Lastly check if randomPos is 3, if yes add the correct answer in the last position*/
     for(let i = 0; i < 3; i++) {
-        console.log(randomPos);
+        //Assign correct answer to index i if true
         if(i == randomPos) {
-            html += "<div><input type='radio' class=\"radio-buttons\" name=\"question-group\">" + result['correct_answer'] + "</div>"
-            
+            display_question+="<div><input type='radio' class=\"radio-buttons\" name=\"question-group\">" + correct + "</div>"
         }
-        console.log("I:" + i + " randomPOS: " + randomPos);
-        html += "<div><input type='radio' class=\"radio-buttons\" name=\"question-group\">" + result['incorrect_answers'][i] + "</div>"
+        //Print the incorrect options if above if not true
+        display_question+="<div><input type='radio' class=\"radio-buttons\" name=\"question-group\">" + incorrect[i] + "</div>"
     }
-    if(randomPos == 3) {
-        html += "<div><input type='radio' class=\"radio-buttons\" name=\"question-group\">" + result['correct_answer'] + "</div>"
-    }
-
-    document.getElementById('questions').innerHTML = html
+    //Assign correct answer to index 3 if randPos is 3
+    if(randomPos == 3){
+        display_question+="<div><input type='radio' class=\"radio-buttons\" name=\"question-group\">" + correct + "</div>"
+    }  
+    document.getElementById('questions').innerHTML=display_question;
+    console.log(correct);
 }
 
+    
 // Add a submit button
 function submitAnswer (){
-
+    let userAnswer = document.querySelector("input[name=question-group]:checked").innerHTML;
+    console.log(userAnswer);
 }
 
 //Check score
