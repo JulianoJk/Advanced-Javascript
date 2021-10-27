@@ -9,17 +9,24 @@
     <title>Document</title>
 </head>
 <body onload="loaded()">
+    <div id="Quiz" style="display: block">
+        <!--A button to start the quiz, then to get next question-->
+        <div id="process-div"><button id="process-button">Start</button></div>
+        
+        <div id="current-question"></div>
 
-    <!--A button to start the quiz, then to get next question-->
-    <div id="process-div"><button id="process-button">Start</button></div>
+    <!--Display the question--> 
+    <div id="questions"></div>
 
-   <!--Display the question--> 
-   <div id="questions"></div>
+        <!--Change the background mode-->
+        <div><button id="night-day-button" onclick="changeMode()">Night mode</button></div>
 
-    <!--Change the background mode-->
-    <div><button id="night-day-button" onclick="changeMode()">Night mode</button></div>
-
-    <div class="submit-div"><input type="submit" id="submit-button" onclick="submitAnswer()"></div>
+        <div id ="submit-div" class="submit-div " style="display: none"><button id="submit-button" onclick="submitAnswer()">Submit</button></div>
+    </div>
+    <div id="Game-Over" style="display: none">
+        <!--Hide the button until the quiz is finished-->
+        <div id="restart" ><button onclick="restart()">Restart</button></div>
+    </div>
 
     
     <script src="./Quiz.js"></script>
