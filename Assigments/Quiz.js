@@ -2,6 +2,7 @@ let questions_array =[]; //Empty array to store the questions(question+ options)
 let currentQuestion = 0; //Set the question number
 let correct;
 let incorrect;
+let score = 0;
 
 //Once the page loads, assign this function to the start button
 function loaded(){
@@ -11,14 +12,18 @@ function loaded(){
         //Get a question when the 'start' button is clicked for first time
         getQuestion();
         //display the submit button
-        document.getElementById('submit-div').style.display="block";
+        document.getElementById('submit-div').style.display="block"
     })
+    let submitButton= document.getElementById('submit-button').addEventListener('click', () =>{
+        submitAnswer();
+    });
 }
 
 
 
 //Start playing
 function startQuiz(){
+
 
     let start_div = document.getElementById("process-div");
 
@@ -41,25 +46,28 @@ function startQuiz(){
     
 
     //Add an eventListener
-    next_ques_btn.addEventListener('click', getQuestion);
+    next_ques_btn.addEventListener('click', ()=> {
+        currentQuestion++;
+        displayQuestion();
+    });
 }
 
 
 
 //get API from the open trivia api
 function getQuestion(){
-    fetch("https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple")
+    fetch("https://opentdb.com/api.php?amount=10&type=multiple")
     .then(res=> data=res.json())
     .then(data => {
         questions_array = data['results']; //Assign everything the 'results' obj
-        displayQuestion()
+        displayQuestion();
     }); 
 }
 
 function displayQuestion(){
+    gameOver();
 
     let display_question ="<div><b>" + questions_array[currentQuestion]['question'] + "</b></div>"; 
-
 
     //In order to shuffle the correct answer instead of being always the first or last
     let randomPos = Math.floor(Math.random() * 4);
@@ -90,34 +98,31 @@ function displayQuestion(){
 // Add a submit button
 function submitAnswer (){
     let userAnswer = document.querySelector("input[name=question-group]:checked").value;//Take the value from the options
-    if(userAnswer == correct){
-        //score++
-    }
-    //Display next question
+    //add the number of questions displayed
     currentQuestion++;
+    if(userAnswer == correct){
+        score++;
+    }
+    gameOver();
     displayQuestion();
 
+}
     //After the quiz is over, display score, create a button to start a new quiz
-    if(currentQuestion == (questions_array.length -1)){
+function gameOver(){
+    let submit = document.getElementById("submit-button");
+    let nxtQues = document.getElementById('Next-Question-Button');
+    if(currentQuestion ==questions_array.length){
         //Hide everything after the quiz ends and display only the score and the restart button
         document.getElementById('Quiz').style="display:none"
         document.getElementById('Game-Over').style="display:block";
+        //display the score to the user
+        document.getElementById("score").innerHTML ="Final score is: " + score;
     }
 }
-
 
 //restart the quiz after ending
 function restart(){
     window.location.reload();
-}
-
-//Check score
-function checkScore(){
-
-}
-//display the score to the user(live)
-function displayScore() {
-
 }
 
 //Change the mode(from day to night and reverse) //TODO: add it to the left right corner
