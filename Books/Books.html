@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./books.css">
+</head>
+<body>
+    <div id="book-field-div">
+        <form action="#" onsubmit="return getISBN()">
+            <label for="text-field"></label>
+            <input id="text-field" type="number" placeholder="ISBN Number" />
+    
+            <!-- submit the user input and clear, if exist, any error messages -->
+            <input id="submit-number" type="submit" onclick="clearMsgs()"/>
+
+            <!-- No Input  -->
+            <div id="empty-input" style="display: none;">No input! Please type the ISBN of the book</div>
+
+            <!-- No matched ISBN -->
+            <div id="invalid-input" style="display: none;">No matched ISBN, try again!</div>
+        </form>
+        
+    </div>
+
+
+
+
+<script src="./test.js"></script>
+
+</body>
+</html>
