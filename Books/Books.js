@@ -22,12 +22,12 @@ function getISBN(){
     if(isbn!=''){
         //Clear the text
         userInput.value=''; 
-        retrieveData(isbn);
+        
     }else{
         document.getElementById("empty-input").style.display = "block";
         
     }
-    
+    retrieveData(isbn);
 }
 function retrieveData(number){
     let url =`https://openlibrary.org/isbn/${number}.json`;
@@ -35,12 +35,13 @@ function retrieveData(number){
     fetch(url)
     .then(response => response.json())
     .then(data => {
+        console.log(data)
         displayInfo(data);
     })
     //Catch error(found no ISBN)
-    .catch(err =>{
-        document.getElementById('invalid-input').style.display="block";
-    })
+    // .catch(err =>{
+    //     document.getElementById('invalid-input').style.display="block";
+    // })
 
 
 }
@@ -55,10 +56,8 @@ function clearMsgs(){
 //Display info about the book(Title, publication year, number of pages, etc)
 function displayInfo(data){
     // Make div visible //TODO:Delete it
-    // document.getElementsByClassName('book-info').style.display="block";
+    document.getElementById('book-title').style.display="block";
     //Display Title
-    document.getElementById('title').innerHTML = 'Title: ' + data['title'];
-
-    //Display publication year
-    console.log(data['publish_date'] );//TODO:DELETE 
+    document.getElementById('book-title').innerHTML +=`Title: ${data['title']}`
+    //TODO: add each element to a new line
 }
