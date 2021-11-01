@@ -38,10 +38,10 @@ function retrieveData(number){
         console.log(data)
         displayInfo(data);
     })
-    //Catch error(found no ISBN)
-    // .catch(err =>{
-    //     document.getElementById('invalid-input').style.display="block";
-    // })
+    // Catch error(found no ISBN)
+    .catch(err =>{
+        document.getElementById('invalid-input').style.display="block";
+    })
 
 
 }
@@ -58,6 +58,6 @@ function displayInfo(data){
     // Make div visible //TODO:Delete it
     document.getElementById('book-title').style.display="block";
     //Display Title
-    document.getElementById('book-title').innerHTML +=`Title: ${data['title']}`
+    document.getElementById('book-title').innerHTML =`Title: ${data['title']}`
     //TODO: add each element to a new line
 }
