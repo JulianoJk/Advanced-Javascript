@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.,0">
+    <link rel = "stylesheet" href="Quiz.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Document</title>
+</head>
+<body onload="loaded()">
+    <div id ="container">
+        <div id="Quiz" style="display: block">
+            <!--A button to start the quiz, then to get next question-->
+            <div id="process-div"><button id="process-button">Start</button></div>
+            
+            <div id="current-question"></div>
+
+        <!--Display the question--> 
+        <div id="questions"></div>
+
+
+
+            <div id ="submit-div" class="submit-div " style="display: none"><button id="submit-button" >Submit</button></div>
+        </div>
+        <div id="Game-Over" style="display: none">
+            <!--Hide the button until the quiz is finished-->
+            <div id="restart" ><button onclick="restart()">Restart</button></div>
+        </div>
+        <div id="score-div"><h2 id="score"></h2></div>
+    </div>
+    <!--Change the background mode-->
+    <div><button id="night-day-button" onclick="changeMode()">Night mode</button></div>
+    
+    <script src="./Quiz.js"></script>
+</body>
+</html>

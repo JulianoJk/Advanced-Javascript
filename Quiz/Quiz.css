@@ -1,0 +1,23 @@
+*{
+    font-size: 25px;
+}
+
+#night-day-button{
+    padding: 10px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: rgb(207, 190, 207);
+}
+
+button{
+    border-color: rgb(94, 70, 94);
+    padding: 10px;
+    font-family:'Courier New', Courier, monospace;
+    background-color: rgb(207, 190, 207);
+}
+#container{
+    position: absolute;
+    left: 40%;
+    top: 30%;
+}
