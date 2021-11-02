@@ -14,14 +14,15 @@ function getISBN(){
 }
 function retrieveData(number){
     let url =`https://openlibrary.org/isbn/${number}.json`;
-    let img = `https://covers.openlibrary.org/b/isbn/${number}-M.jpg`
-    
+
+
 
     fetch(url)
     .then(response => response.json())
     .then(data => {
         console.log(data)
-        displayInfo(data, img);
+        displayInfo(data);
+        changeCover(number);
     })
     // Catch error(found no ISBN)
     .catch(err =>{
@@ -49,7 +50,21 @@ function displayInfo(data, img){
     //Display publication year
     document.getElementById('book-publ-year').innerHTML=`Publication year: ${data['publish_date']}`
 
-    //Display book cover
-    document.getElementById('cover').src = img;
+
     
+}
+function changeCover(number){
+    let size = document.querySelector('input[name=cover-size]:checked').value;
+    let img_S ;
+    let img_M;
+    let img_L;
+
+    if(size == 'S'){
+        img_S =`https://covers.openlibrary.org/b/isbn/${number}-S.jpg`;
+        retrieveData(number);
+    }else if(size == 'M'){
+        img_M = `https://covers.openlibrary.org/b/isbn/${number}-M.jpg`;
+    }else{
+        img_L = `https://covers.openlibrary.org/b/isbn/${number}-L.jpg`;
+    }    
 }

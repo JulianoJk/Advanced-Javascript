@@ -27,19 +27,20 @@
     <div id="books-info-div" style="display: none">
         
         <div id="selection-cover-size">
-            <label for="S">Small</label>
-            <input type="radio" name="cover-size" id="S" value="S" checked>
-
-            <label for="M">Medium</label>
-            <input type="radio" name="cover-size" id="M" value="M">
-            
-            <label for="L">Large</label>
-            <input type="radio" name="cover-size" id="L" value="L">          
+            <form onchange="changeCover()">
+                <label for="S"> Small<input type="radio" id ="S"name="cover-size" value="S"></label><br>
+                <label for="M"> Medium<input type="radio" id="M" name="cover-size" value="M" checked></label><br>
+                <label for="L"> Large<input type="radio" id="L" name="cover-size" value="L"></label><br>
+                <input id="changeCover" type="submit"/>
+               </form>      
 
         </div>
-        <div id="book-cover" ><img src="#" alt="book cover" id="cover" />
 
-        </div>
+        <div id="book-cover-div"><img src="#" alt="book cover" id="cover" /></div>
+
+
+
+
 
         <div id="book-title" ></div>
 
