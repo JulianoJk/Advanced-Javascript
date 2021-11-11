@@ -6,7 +6,7 @@ let score = 0;
 
 $(document).ready(function () {
 
-    
+
     //Once the page loads, assign this function to the start button
     $('#process-button').click(function(){
         //Receive from the API using AJAX the questions
@@ -25,13 +25,13 @@ $(document).ready(function () {
     //Display the question and remove the 'Start' button
     function displayQuestion(){
 
-        let display_question ="<div><b>" + questions_array[currentQuestion]['question'] + "</b></div>"; 
+        let display_question ="<div><b>" + questions_array[currentQuestion]['question'] + "</b></div>";
 
         //In order to shuffle the correct answer instead of being always the first or last
         let randomPos = Math.floor(Math.random() * 4);
         correct = questions_array[currentQuestion]['correct_answer']; //save the correct answer of the quiz
         incorrect = questions_array[currentQuestion]['incorrect_answers']; //save the correct answer of the quiz
-    
+
         /*Loop to shuffle the answers. If the i is matched with the randomPos, add the correct answer to that position, else add all the wrong answers. Lastly check if randomPos is 3, if yes add the correct answer in the last position*/
         for( let i =0; i < 3; i++) {
             //Assign correct answer to index i if true
@@ -44,24 +44,24 @@ $(document).ready(function () {
         //Assign correct answer to index 3 if randPos is 3
         if(randomPos == 3){
             display_question+="<div><label><input type='radio' class=\"radio-buttons\" name=\"question-group\" value='" + correct + "'>" + correct + "</label></div>"
-        }  
+        }
         $('#process-div').html(display_question);
-    
+
         console.log(correct);//TODO:Delete it
         // display question order and length (1/10);
-        document.getElementById('current-question').innerHTML= "<div>" + (currentQuestion+1) + '/' +questions_array.length + "</div>"; 
+        $("#current-question").html("<div>" + (currentQuestion+1) + '/' +questions_array.length + "</div>");
         //Display the submit button
         $("#submit-button").show();
-        
+
     };
 
     //submit the selected radio button
     $("#submit-button").click(function(){
-        if ($("input").is(":checked")) {  
-            let userAnswer=($( "input:checked" ).val());  
+        if ($("input").is(":checked")) {
+            let userAnswer=($( "input:checked" ).val());
             if(userAnswer == correct){
                 score++;
-            } 
+            }
         }
         gameOver()
     })
@@ -71,7 +71,7 @@ $(document).ready(function () {
         if(currentQuestion<questions_array.length-1){
             currentQuestion++;
             displayQuestion();
-            
+
         }else{
             $("#container").hide();
             $("#game-Over").show();
@@ -83,5 +83,5 @@ $(document).ready(function () {
     $(".reset").click(function(){
         window.location.reload();
     })
-        
+
 });
