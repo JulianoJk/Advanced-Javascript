@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.,0">
+    <link rel = "stylesheet" href="Quiz_jQuery.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Document</title>
+</head>
+<body>
+    <div id ="container">
+        
+        <!--A button to start the quiz, then to get next question-->
+        <div id="process-div"><button id="process-button">Start</button></div>
+        
+
+        <!-- Display the number of the current question the user is  -->
+        <div id="current-question"></div>
+
+        <div id="skip-reset-div">
+            <button id="skip" style="display: none">Skip question</button>
+            
+            
+        </div>
+        <button id="submit-button" style="display: none">Submit</button>
+        <button class="reset">Reset</button>
+        
+    </div>
+    <div id="game-Over" style="display:none">
+        <div id="score"></div>
+        <button class="reset">Reset</button>
+
+    </div>
+    
+    
+    <script src="/jquery-3.6.0.js"></script>
+    <script src="./Quiz_jQuery.js"></script>
+</body>
+</html>

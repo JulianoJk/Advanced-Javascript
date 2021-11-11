@@ -1,0 +1,46 @@
+*{
+    font-size: 25px;
+}
+body{
+    background: linear-gradient( rgb(104, 206, 109),skyblue);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+button{
+    border-color: rgb(94, 70, 94);
+    padding: 10px;
+    margin: 30px;
+    font-family:'Courier New', Courier, monospace;
+    background-color: rgb(207, 190, 207);
+}
+#container{
+    position: absolute;
+    left: 20%;
+    top: 30%;
+    width: 600px;
+    height: 400px;
+    border: solid black 7px;
+    border-radius: 10px;
+
+}
+#game-Over{
+    position: absolute;
+    left: 20%;
+    top: 30%;
+    width: 350px;
+    height: 100px;
+    border: solid black 7px;
+    border-radius: 10px;
+}
+.reset{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+#skip{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
